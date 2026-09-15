@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DDev — Devoted Development</title>
+
+  <meta
+    name="description"
+    content="DDev — Devoted Development. A community for developers, creators, and curious people."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    /* ========================================
+       VARIABLES
+    ======================================== */
+
+    :root {
+      --background: #08070c;
+      --background-2: #0d0b13;
+
+      --text: #ffffff;
+      --muted: #a7a2b3;
+
+      --border: rgba(255, 255, 255, 0.10);
+
+      --pink: #ff2f87;
+      --purple: #9147ff;
+      --blue: #247cff;
+      --cyan: #24d9ef;
+      --orange: #ff9d38;
+    }
+
+
+    /* ========================================
+       RESET
+    ======================================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+      min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at 15% 10%,
+          rgba(255, 40, 130, 0.14),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 85% 25%,
+          rgba(70, 80, 255, 0.13),
+          transparent 32%
+        ),
+
+        linear-gradient(
+          180deg,
+          var(--background),
+          var(--background-2)
+        );
+
+      color: var(--text);
+
+      font-family:
+        "Inter",
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      overflow-x: hidden;
+    }
+
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+
+    /* ========================================
+       BACKGROUND ORBS
+    ======================================== */
+
+    .orb {
+      position: fixed;
+
+      width: 300px;
+      height: 300px;
+
+      border-radius: 50%;
+
+      filter: blur(110px);
+
+      opacity: 0.12;
+
+      pointer-events: none;
+
+      z-index: 0;
+    }
+
+
+    .orb-one {
+      background: var(--pink);
+
+      top: 35%;
+      left: -150px;
+    }
+
+
+    .orb-two {
+      background: var(--blue);
+
+      right: -150px;
+      top: 10%;
+    }
+
+
+    /* ========================================
+       NAVIGATION
+    ======================================== */
+
+    nav {
+      width: min(1180px, calc(100% - 40px));
+
+      margin: auto;
+
+      padding: 24px 0;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      position: relative;
+
+      z-index: 10;
+    }
+
+
+    .brand {
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+    }
+
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+
+      object-fit: contain;
+    }
+
+
+    .brand-text {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 2px;
+    }
+
+
+    .brand-name {
+      font-size: 17px;
+
+      font-weight: 800;
+
+      letter-spacing: -0.02em;
+    }
+
+
+    .brand-description {
+      color: var(--muted);
+
+      font-size: 9px;
+
+      font-weight: 600;
+
+      letter-spacing: 0.13em;
+
+      text-transform: uppercase;
+    }
+
+
+    .nav-button {
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 11px 17px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 12px;
+
+      background: rgba(255, 255, 255, 0.04);
+
+      font-size: 14px;
+
+      font-weight: 600;
+
+      transition: 0.2s ease;
+    }
+
+
+    .nav-button:hover {
+      background: rgba(255, 255, 255, 0.09);
+
+      transform: translateY(-2px);
+    }
+
+
+    /* ========================================
+       MAIN
+    ======================================== */
+
+    main {
+      width: min(1180px, calc(100% - 40px));
+
+      margin: auto;
+
+      position: relative;
+
+      z-index: 1;
+    }
+
+
+    /* ========================================
+       HERO
+    ======================================== */
+
+    .hero {
+      min-height: 650px;
+
+      display: grid;
+
+      grid-template-columns: 1.05fr 0.95fr;
+
+      gap: 60px;
+
+      align-items: center;
+
+      padding: 60px 0 100px;
+    }
+
+
+    .status {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 9px;
+
+      color: #d7d2df;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      letter-spacing: 0.13em;
+
+      text-transform: uppercase;
+    }
+
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+
+      border-radius: 50%;
+
+      background: #4df19b;
+
+      box-shadow:
+        0 0 10px #4df19b,
+        0 0 20px rgba(77, 241, 155, 0.5);
+    }
+
+
+    .hero h1 {
+      margin-top: 20px;
+
+      max-width: 750px;
+
+      font-size: clamp(52px, 7vw, 90px);
+
+      line-height: 0.96;
+
+      letter-spacing: -0.065em;
+    }
+
+
+    .gradient-text {
+      background:
+        linear-gradient(
+          100deg,
+          #ff3188,
+          #ff9d38,
+          #35d9ef,
+          #934aff
+        );
+
+      -webkit-background-clip: text;
+
+      background-clip: text;
+
+      color: transparent;
+    }
+
+
+    .hero-description {
+      max-width: 620px;
+
+      margin-top: 27px;
+
+      color: var(--muted);
+
+      font-size: 18px;
+
+      line-height: 1.75;
+    }
+
+
+    /* ========================================
+       HERO BUTTONS
+    ======================================== */
+
+    .hero-buttons {
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      flex-wrap: wrap;
+
+      margin-top: 32px;
+    }
+
+
+    .primary-button {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 18px;
+
+      padding: 15px 20px;
+
+      border-radius: 13px;
+
+      background:
+        linear-gradient(
+          110deg,
+          var(--pink),
+          var(--purple)
+        );
+
+      color: white;
+
+      font-size: 14px;
+
+      font-weight: 700;
+
+      box-shadow:
+        0 15px 45px rgba(145, 71, 255, 0.22);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+
+    .primary-button:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 20px 55px rgba(145, 71, 255, 0.35);
+    }
+
+
+    .secondary-button {
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 15px 20px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 13px;
+
+      background: rgba(255, 255, 255, 0.04);
+
+      color: #ddd8e5;
+
+      font-size: 14px;
+
+      font-weight: 600;
+
+      transition: 0.2s ease;
+    }
+
+
+    .secondary-button:hover {
+      background: rgba(255, 255, 255, 0.09);
+
+      transform: translateY(-2px);
+    }
+
+
+    /* ========================================
+       LOGO DISPLAY
+    ======================================== */
+
+    .logo-container {
+      min-height: 470px;
+
+      display: grid;
+
+      place-items: center;
+
+      position: relative;
+
+      overflow: hidden;
+
+      border: 1px solid var(--border);
+
+      border-radius: 40px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.08),
+          rgba(255, 255, 255, 0.025)
+        );
+
+      box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.04);
+    }
+
+
+    .logo-container::before {
+      content: "";
+
+      position: absolute;
+
+      width: 330px;
+      height: 330px;
+
+      border-radius: 50%;
+
+      background:
+        conic-gradient(
+          from 180deg,
+          #ff2e87,
+          #ffad36,
+          #24d9f0,
+          #844aff,
+          #ff2e87
+        );
+
+      filter: blur(70px);
+
+      opacity: 0.3;
+    }
+
+
+    .logo-ring {
+      position: absolute;
+
+      width: 72%;
+      aspect-ratio: 1;
+
+      border: 1px solid rgba(255, 255, 255, 0.08);
+
+      border-radius: 50%;
+    }
+
+
+    .main-logo {
+      position: relative;
+
+      width: min(70%, 340px);
+
+      aspect-ratio: 1;
+
+      object-fit: contain;
+
+      filter:
+        drop-shadow(
+          0 30px 50px rgba(0, 0, 0, 0.55)
+        );
+
+      animation:
+        floatingLogo 5s ease-in-out infinite;
+    }
+
+
+    @keyframes floatingLogo {
+
+      0%,
+      100% {
+        transform:
+          translateY(0)
+          rotate(0deg);
+      }
+
+      50% {
+        transform:
+          translateY(-12px)
+          rotate(1deg);
+      }
+
+    }
+
+
+    /* ========================================
+       FEATURE CARDS
+    ======================================== */
+
+    .features {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 16px;
+
+      padding-bottom: 90px;
+    }
+
+
+    .feature {
+      padding: 29px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 22px;
+
+      background:
+        rgba(255, 255, 255, 0.045);
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+    }
+
+
+    .feature:hover {
+      transform: translateY(-5px);
+
+      background:
+        rgba(255, 255, 255, 0.07);
+    }
+
+
+    .feature-number {
+      width: 40px;
+      height: 40px;
+
+      display: grid;
+
+      place-items: center;
+
+      border-radius: 11px;
+
+      background:
+        rgba(255, 255, 255, 0.08);
+
+      color: #ddd8e5;
+
+      font-size: 11px;
+
+      font-weight: 800;
+    }
+
+
+    .feature h2 {
+      margin-top: 24px;
+
+      font-size: 19px;
+
+      letter-spacing: -0.02em;
+    }
+
+
+    .feature p {
+      margin-top: 10px;
+
+      color: var(--muted);
+
+      font-size: 14px;
+
+      line-height: 1.7;
+    }
+
+
+    /* ========================================
+       FINAL CTA
+    ======================================== */
+
+    .cta {
+      display: flex;
+
+      align-items: center;
+
+      gap: 22px;
+
+      margin-bottom: 70px;
+
+      padding: 25px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 24px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.07),
+          rgba(255, 255, 255, 0.025)
+        );
+    }
+
+
+    .cta-logo {
+      width: 78px;
+      height: 78px;
+
+      object-fit: contain;
+    }
+
+
+    .cta-text {
+      flex: 1;
+    }
+
+
+    .cta-label {
+      color: #d2ccdb;
+
+      font-size: 10px;
+
+      font-weight: 800;
+
+      letter-spacing: 0.15em;
+
+      text-transform: uppercase;
+    }
+
+
+    .cta h2 {
+      margin-top: 5px;
+
+      font-size: 28px;
+
+      letter-spacing: -0.03em;
+    }
+
+
+    .cta p {
+      margin-top: 6px;
+
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+
+    /* ========================================
+       FOOTER
+    ======================================== */
+
+    footer {
+      width: min(1180px, calc(100% - 40px));
+
+      margin: auto;
+
+      padding: 0 0 30px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      color: #777180;
+
+      font-size: 13px;
+
+      position: relative;
+
+      z-index: 2;
+    }
+
+
+    footer a {
+      transition: 0.2s ease;
+    }
+
+
+    footer a:hover {
+      color: white;
+    }
+
+
+    /* ========================================
+       MOBILE
+    ======================================== */
+
+    @media (max-width: 850px) {
+
+      .hero {
+        grid-template-columns: 1fr;
+
+        padding-top: 35px;
+      }
+
+
+      .logo-container {
+        min-height: 380px;
+      }
+
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+
+      .cta {
+        flex-wrap: wrap;
+      }
+
+
+      .cta .primary-button {
+        margin-left: 0;
+      }
+
+    }
+
+
+    @media (max-width: 550px) {
+
+      nav,
+      main,
+      footer {
+        width: calc(100% - 28px);
+      }
+
+
+      nav {
+        padding-top: 18px;
+      }
+
+
+      .brand-description {
+        display: none;
+      }
+
+
+      .nav-button {
+        padding: 9px 13px;
+
+        font-size: 12px;
+      }
+
+
+      .hero {
+        padding-top: 35px;
+
+        padding-bottom: 70px;
+      }
+
+
+      .hero h1 {
+        font-size: 52px;
+      }
+
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+
+      .logo-container {
+        min-height: 330px;
+
+        border-radius: 28px;
+      }
+
+
+      .main-logo {
+        width: 72%;
+      }
+
+
+      .cta-logo {
+        width: 60px;
+        height: 60px;
+      }
+
+
+      .cta h2 {
+        font-size: 24px;
+      }
+
+
+      footer {
+        flex-direction: column;
+
+        gap: 12px;
+
+        text-align: center;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- Background effects -->
+
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
+
+
+  <!-- ========================================
+       NAVIGATION
+  ========================================= -->
+
+  <nav>
+
+    <a
+      class="brand"
+      href="#"
+    >
+
+      <img
+        src="https://i.ibb.co/ccNtTymH/Copy-of.png"
+        alt="DDev logo"
+      >
+
+      <div class="brand-text">
+
+        <div class="brand-name">
+          DDev
+        </div>
+
+        <div class="brand-description">
+          Devoted Development
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <a
+      class="nav-button"
+      href="https://discord.gg/MTcQgrb7fE"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Join Discord
+    </a>
+
+  </nav>
+
+
+
+  <main>
+
+
+    <!-- ========================================
+         HERO
+    ========================================= -->
+
+    <section class="hero">
+
+
+      <div class="hero-content">
+
+        <div class="status">
+
+          <span class="status-dot"></span>
+
+          DDev • Devoted Development
+
+        </div>
+
+
+        <h1>
+
+          Build.
+          Learn.
+          Create.
+
+          <span class="gradient-text">
+            Together.
+          </span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+          A community for developers, creators, and curious people
+          who like building, learning, and sharing ideas.
+          Join the server and become part of DDev.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+
+          <a
+            class="primary-button"
+            href="https://discord.gg/MTcQgrb7fE"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            Join the Discord
+
+            <span>
+              →
+            </span>
+
+          </a>
+
+
+          <a
+            class="secondary-button"
+            href="#about"
+          >
+
+            Learn more
+
+          </a>
+
+
+        </div>
+
+      </div>
+
+
+
+      <!-- ========================================
+           LOGO
+      ========================================= -->
+
+      <div class="logo-container">
+
+        <div class="logo-ring"></div>
+
+
+        <img
+          class="main-logo"
+          src="https://i.ibb.co/ccNtTymH/Copy-of.png"
+          alt="DDev — Devoted Development"
+        >
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- ========================================
+         FEATURES
+    ========================================= -->
+
+    <section
+      class="features"
+      id="about"
+    >
+
+
+      <article class="feature">
+
+        <div class="feature-number">
+          01
+        </div>
+
+
+        <h2>
+          Connect with developers
+        </h2>
+
+
+        <p>
+          Meet developers and creators, exchange ideas,
+          and grow your network.
+        </p>
+
+      </article>
+
+
+
+      <article class="feature">
+
+        <div class="feature-number">
+          02
+        </div>
+
+
+        <h2>
+          Build &amp; learn
+        </h2>
+
+
+        <p>
+          Share projects, ask questions, learn new things,
+          and help others along the way.
+        </p>
+
+      </article>
+
+
+
+      <article class="feature">
+
+        <div class="feature-number">
+          03
+        </div>
+
+
+        <h2>
+          Devoted to development
+        </h2>
+
+
+        <p>
+          A relaxed community centered around development,
+          creativity, collaboration, and making cool things.
+        </p>
+
+      </article>
+
+
+    </section>
+
+
+
+    <!-- ========================================
+         CALL TO ACTION
+    ========================================= -->
+
+    <section class="cta">
+
+
+      <img
+        class="cta-logo"
+        src="https://i.ibb.co/ccNtTymH/Copy-of.png"
+        alt="DDev logo"
+      >
+
+
+      <div class="cta-text">
+
+        <div class="cta-label">
+          Ready when you are
+        </div>
+
+
+        <h2>
+          Come say hello.
+        </h2>
+
+
+        <p>
+          Click below to open the DDev Discord invite.
+        </p>
+
+      </div>
+
+
+      <a
+        class="primary-button"
+        href="https://discord.gg/MTcQgrb7fE"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        Open Invite →
+
+      </a>
+
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- ========================================
+       FOOTER
+  ========================================= -->
+
+  <footer>
+
+    <span>
+      © 2026 DDev — Devoted Development
+    </span>
+
+
+    <a
+      href="https://discord.gg/MTcQgrb7fE"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Discord Invite
+    </a>
+
+  </footer>
+
+
+</body>
+</html>
